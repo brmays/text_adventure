@@ -1,0 +1,13 @@
+{
+    "assets": [
+        {
+            "current_room": "third floor",
+            "items": [
+                "fist",
+                "t-shirt"
+            ],
+            "open": "As you are walking your dog down the street, a rat darts across the road and runs into a creepy looking building. You doggo chases after it. You have no choice but to go in and rescue your beloved pupper.",
+            "win": "As you enter the room your dog jumps into your arms! You did it! You head downstairs and out the front entrance, handing the baseball bat to the old man as you exit."
+        }
+    ]
+}
