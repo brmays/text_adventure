@@ -136,19 +136,17 @@ class ViewHandler():
     def get_fight_panels(self):
             l_col = 36
             r_col = 35
-            bam_unis = ['\u2B24', '\u25A0']
-            bam = ["", ""]
-            for i in range(5):
-                bam_line = ""
-                for j in range(1, 33):
-                    if j % 4 == 0:
-                        if i != 3:
-                            bam_line = bam_line + bam_unis[i < 4]
-                    else:
-                        bam_line = bam_line + " "
-                bam.append(bam_line)
-            bam.append("")
-                
+            # windows doesn't support the unicode. quick fix here. mathmamize it later
+            bam = [
+                "",
+                "\\\\\\    ///",
+                "\\\\\\  ///",
+                "\\\\\\///",
+                "///\\\\\\",
+                "///  \\\\\\",
+                "///    \\\\\\",
+                ""
+            ]
 
             left_side = [
                 [
