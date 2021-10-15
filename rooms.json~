@@ -32,7 +32,7 @@
             },
             "locks": { },
             "random_encounter": {
-                "chance": 6,
+                "chance": 4,
                 "baddie_pool": ["a rat", "a cockroach"],
                 "treasure_pool": ["pocket lint", "chicken essence", "chicken essence"]
             }
@@ -47,7 +47,7 @@
             },
             "locks": { },
             "random_encounter": {
-                "chance": 7,
+                "chance": 5,
                 "baddie_pool": ["a rat", "a cockroach"],
                 "treasure_pool": ["pocket lint", "chicken essence", "chicken essence"]
             }
@@ -66,7 +66,7 @@
             },
             "locks": { },
             "random_encounter": {
-                "chance": 5,
+                "chance": 3,
                 "baddie_pool": ["a rat", "a cockroach"],
                 "treasure_pool": ["pocket lint", "chicken essence", "chicken essence"]
             }
@@ -136,7 +136,7 @@
             },
             "locks": { },
             "random_encounter": {
-                "chance": 7,
+                "chance": 5,
                 "baddie_pool": ["a glowing cockroach", "a glowing rat", "a ghoul"],
                 "treasure_pool": ["pocket lint", "green ooze", "shiv", "chicken essence", "Paolyta-B"]
             }
@@ -155,7 +155,7 @@
             },
             "locks": { },
             "random_encounter": {
-                "chance": 8,
+                "chance": 6,
                 "baddie_pool": ["a glowing cockroach", "a glowing rat", "a ghoul"],
                 "treasure_pool": ["pocket lint", "green ooze", "shiv", "chicken essence", "Paolyta-B"]
             }

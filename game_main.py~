@@ -18,7 +18,7 @@ viewHandler = ViewHandler()
 viewHandler.set_view_content("action response", "Type your command below.")
 actionHandler = ActionHandler(viewHandler)
 
-files = [open('player.json', encoding='utf-8'), open('rooms.json', encoding='utf-8'), open('items.json', encoding='utf-8'), open('characters.json', encoding='utf-8')]
+files = [open('player.json'), open('rooms.json'), open('items.json'), open('characters.json')]
 classes = [Player, Room, Item, Character]
 assets = [player, rooms, items, characters]
 

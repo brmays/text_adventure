@@ -142,9 +142,9 @@ class ActionHandler():
                         room = Room.room_dict[player.current_room]
                         opponent = Character.character_dict[baddie]
                         fight_instance = FightHandler(self.viewHandler, player, opponent, room)
-                        opponent.health = opponent.max_health
                         fight_instance.start_fight()
-                        if len(current_room.random_encounter["treasure_pool"]) > 0 and opponent.health <= 0:
+                        opponent.health = opponent.max_health
+                        if len(current_room.random_encounter["treasure_pool"]) > 0:
                             treasure_roll = randint(0, len(current_room.random_encounter["treasure_pool"]) - 1)
                             treasure = current_room.random_encounter["treasure_pool"][treasure_roll]
                             self.set_view_content(f"You have slain your enemy. It was carrying a {treasure}. You can take it, or sacrifice it to the gods of battle. Do you want it? (Y)es or (n)?")
