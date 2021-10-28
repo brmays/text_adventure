@@ -1,7 +1,7 @@
 class Player():
 
     def __init__(self, data):
-        self.data_dict = data
+        self.data = data['player']
         self.viewHandler = None
         self.level = 1
         self.experience = 0

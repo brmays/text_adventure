@@ -22,13 +22,13 @@ actionHandler = ActionHandler(viewHandler)
 player.viewHandler = viewHandler
 
 viewHandler.update_view("open")
-viewHandler.set_view_content("info_text", player.open)
+viewHandler.set_view_content("info_text", player.data['open'])
 viewHandler.update_view("info")
 input("> ")
 
 while 1:
-    current_room = rooms[player.current_room]
-    viewHandler.set_view_content("room", current_room.description)
+    current_room = rooms.room_dict[player.data['current_room']]
+    viewHandler.set_view_content("room", current_room.data['description'])
     viewHandler.set_view_content("exits", current_room.generate_exit_list("and"))
 
     room_characters = [characters[x] for x in current_room.characters]
