@@ -1,40 +1,25 @@
 import json
+from os.path import join
 
 from game_action_handler import ActionHandler
 from game_view_handler import ViewHandler
-from game_character import Character
-from game_item import Item
+from game_character import Characters
+from game_item import Items
 from game_player import Player
-from game_room import Room
+from game_room import Rooms
+from JSON_handler import JSONHandler
 
 
+player, rooms, items, characters = Player, Rooms, Items, Characters
 
-player = Player
-rooms = Room.room_dict
-items = Item.item_dict
-characters = Character.character_dict
+json_handler = JSONHandler(join('assets', 'new_game'), {'player.json': player, 'rooms.json': rooms, 'items.json': items, 'characters.json': characters})
+data = json_handler.populate_classes()
+player, rooms, items, characters = data['player'], data['rooms'], data['items'], data['characters']
 
 viewHandler = ViewHandler()
 viewHandler.set_view_content("action response", "Type your command below.")
 actionHandler = ActionHandler(viewHandler)
-
-files = [open('player.json', encoding='utf-8'), open('rooms.json', encoding='utf-8'), open('items.json', encoding='utf-8'), open('characters.json', encoding='utf-8')]
-classes = [Player, Room, Item, Character]
-assets = [player, rooms, items, characters]
-
-starting_info = zip(files, classes, assets)
-
-for json_file, klass, this_asset in starting_info:
-    data = json.load(json_file)
-    for asset in data['assets']:
-        class_init_params = list()
-        for key, val in asset.items():
-            class_init_params.append(val)
-        if this_asset == player:
-            player = Player(viewHandler, *class_init_params)
-        else:
-            this_asset[asset['name']] = klass(*class_init_params)
-
+player.viewHandler = viewHandler
 
 viewHandler.update_view("open")
 viewHandler.set_view_content("info_text", player.open)

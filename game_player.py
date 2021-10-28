@@ -1,14 +1,8 @@
-from game_view_handler import ViewHandler
-
-
 class Player():
 
-    def __init__(self, viewHandler, current_room, items, open, win):
-        self.viewHandler = viewHandler
-        self.current_room = current_room
-        self.items = items
-        self.open = open
-        self.win = win
+    def __init__(self, data):
+        self.data_dict = data
+        self.viewHandler = None
         self.level = 1
         self.experience = 0
         self.level_up = 100

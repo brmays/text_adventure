@@ -1,0 +1,283 @@
+{
+    "assets": [
+        {
+            "name": "a rat",
+            "descriptors": [
+                "rodent"
+            ],
+            "experience_value": 25,
+            "is_enemy": true,
+            "disposition": 2,
+            "description": "A mangy rat the size of a medium dog.",
+            "trigger_item": "water",
+            "max_health": 3,
+            "health": 3,
+            "dexterity": 3,
+            "equipment": {
+                "weapon": ["teeth", 4],
+                "armor": ["fur", 0]
+            },
+            "weakness": "",
+            "items": [],
+            "conversation": "The rat hisses in reply",
+            "pronouns": {
+                "sub": "It",
+                "obj": "it",
+                "pos": "its"
+            }
+        },
+        {
+            "name": "a cockroach",
+            "descriptors": [
+                "roach"
+            ],
+            "experience_value": 20,
+            "is_enemy": true,
+            "disposition": 2,
+            "description": "This monstrosity is the size of a dinnerplate.",
+            "trigger_item": "",
+            "max_health": 2,
+            "health": 2,
+            "dexterity": 4,
+            "equipment": {
+                "weapon": ["mandible", 3],
+                "armor": ["exoskeleton", 0]
+            },
+            "weakness": "",
+            "items": [],
+            "conversation": "The cockroach hisses at you.",
+            "pronouns": {
+                "sub": "It",
+                "obj": "it",
+                "pos": "its"
+            }
+        },
+        {
+            "name": "a glowing rat",
+            "descriptors": [
+                "rodent"
+            ],
+            "experience_value": 65,
+            "is_enemy": true,
+            "disposition": 2,
+            "description": "A glowing rat the size of a medium dog.",
+            "trigger_item": "water",
+            "max_health": 5,
+            "health": 5,
+            "dexterity": 4,
+            "equipment": {
+                "weapon": ["teeth", 5],
+                "armor": ["fur", 0]
+            },
+            "weakness": "",
+            "items": [],
+            "conversation": "The rat hisses in reply",
+            "pronouns": {
+                "sub": "It",
+                "obj": "it",
+                "pos": "its"
+            }
+        },
+        {
+            "name": "a glowing cockroach",
+            "descriptors": [
+                "roach"
+            ],
+            "experience_value": 40,
+            "is_enemy": true,
+            "disposition": 2,
+            "description": "This monstrosity is the size of a dinnerplate.",
+            "trigger_item": "",
+            "max_health": 6,
+            "health": 6,
+            "dexterity": 4,
+            "equipment": {
+                "weapon": ["mandible", 5],
+                "armor": ["exoskeleton", 0]
+            },
+            "weakness": "",
+            "items": [],
+            "conversation": "The cockroach hisses at you.",
+            "pronouns": {
+                "sub": "It",
+                "obj": "it",
+                "pos": "its"
+            }
+        },
+        {
+            "name": "a ghoul",
+            "descriptors": [
+                "zombie"
+            ],
+            "experience_value": 90,
+            "is_enemy": true,
+            "disposition": 2,
+            "description": "This person used to be alive. Now it is undead.",
+            "trigger_item": "",
+            "max_health": 8,
+            "health": 8,
+            "dexterity": 6,
+            "equipment": {
+                "weapon": ["finger nails", 8],
+                "armor": ["rags", 1]
+            },
+            "weakness": "",
+            "items": [],
+            "conversation": "",
+            "pronouns": {
+                "sub": "It",
+                "obj": "it",
+                "pos": "its"
+            }
+        },
+        {
+            "name": "old uncle",
+            "descriptors": [
+                "man",
+                "grandpa"
+            ],
+            "experience_value": 1000,
+            "is_enemy": false,
+            "disposition": 10,
+            "description": "A neatly dressed old man sits behind a desk at the back of the room.",
+            "trigger_item": "",
+            "max_health": 100,
+            "health": 100,
+            "dexterity": 100,
+            "equipment": {
+                "weapon": ["pistol", 100],
+                "armor": ["bullet-proof casualwear", 100]
+            },
+            "weakness": "",
+            "items": [],
+            "conversation": "I saw your dog run back towards the kitchen. If you're going back there, make sure to equip that baseball bat.",
+            "pronouns": {
+                "sub": "He",
+                "obj": "him",
+                "pos": "his"
+            }
+        },
+        {
+            "name": "old ama",
+            "descriptors": [
+                "grandma",
+                "auntie",
+                "woman"
+            ],
+            "experience_value": 1000,
+            "is_enemy": true,
+            "disposition": 10,
+            "description": "A plainly dressed auntie is sweeping the floor.",
+            "trigger_item": "",
+            "max_health": 1000,
+            "health": 1000,
+            "dexterity": 100,
+            "equipment": {
+                "weapon": ["golden broom", 100],
+                "armor": ["grannies special dress", 100]
+            },
+            "weakness": "",
+            "items": [],
+            "conversation": "I saw your dog run into the lab over there. But be careful, there's some bad stuff in there. You might want to go downstairs to kill some more rats and level up a bit.",
+            "pronouns": {
+                "sub": "She",
+                "obj": "her",
+                "pos": "her"
+            }
+        },
+        {
+            "name": "Hoon Dan",
+            "descriptors": [
+                "man",
+                "jerk"
+            ],
+            "experience_value": 300,
+            "is_enemy": true,
+            "disposition": 2,
+            "description": "There is a man that you can tell is a jerk by just looking at him staring at you with folded arms.",
+            "trigger_item": "",
+            "max_health": 16,
+            "health": 16,
+            "dexterity": 8,
+            "equipment": {
+                "weapon": ["spiked baseball bat", 13],
+                "armor": ["leather jacket", 6]
+            },
+            "weakness": "",
+            "items": [
+                "green key",
+                "Paolyta-B"
+            ],
+            "conversation": "Hey fartface. You'll have to get through me if you want to see the boss.",
+            "pronouns": {
+                "sub": "He",
+                "obj": "him",
+                "pos": "his"
+            }
+        },
+        {
+            "name": "the boss",
+            "descriptors": [
+                "boss",
+                "old man",
+                "man"
+            ],
+            "experience_value": 400,
+            "is_enemy": true,
+            "disposition": 2,
+            "description": "A man is sitting behind an wide, ornate desk. This is the boss.",
+            "trigger_item": "",
+            "max_health": 40,
+            "health": 40,
+            "dexterity": 10,
+            "equipment": {
+                "weapon": ["katana", 12],
+                "armor": ["silk robe", 0]
+            },
+            "weakness": "",
+            "items": [
+                "red key",
+                "Paolyta-B",
+                "chicken essence",
+                "katana"
+            ],
+            "conversation": "Your dog is mine. THE BOSS is its new best friend.",
+            "pronouns": {
+                "sub": "He",
+                "obj": "him",
+                "pos": "his"
+            }
+        },
+        {
+            "name": "bored person",
+            "descriptors": [
+                "person",
+                "man",
+                "woman",
+                "Pat"
+            ],
+            "experience_value": 10,
+            "is_enemy": true,
+            "disposition": 2,
+            "description": "A person who looks very bored and probably has no life is at the window taking pictures of cars parked in the crosswalk on the street below. They are wearing combat armor for some reason.",
+            "trigger_item": "",
+            "max_health": 10,
+            "health": 10,
+            "dexterity": 2,
+            "equipment": {
+                "weapon": ["foam hand", 1],
+                "armor": ["combat armor", 17]
+            },
+            "weakness": "",
+            "items": [
+                "pocket lint"
+            ],
+            "conversation": "Yeah, your dog is behind that door. I might have the key, I might not. If I did have it, I wouldn't give it to you, though.",
+            "pronouns": {
+                "sub": "They",
+                "obj": "them",
+                "pos": "their"
+            }
+        }
+    ]
+}

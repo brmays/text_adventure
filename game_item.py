@@ -1,7 +1,17 @@
 
-class Item():
-    item_dict = dict()
-    
+class Items():
+
+    def __init__(self, data):
+        self.data = data
+        self.item_dict = self.generate_items
+
+    def generate_items(self):
+        item_dict = {}
+        for name, data in self.data.items():
+            this_item = Item(data)
+            item_dict[name] = this_item
+        return item_dict
+
     def generate_list_string(item_list, conjunction):
         if type(item_list[0]) != Item:
             itemized_list = []
@@ -19,11 +29,7 @@ class Item():
         else:
             return "Something went wrong."
 
-    def __init__(self, name, room_description, description, indefinite_article, general_type, specific_type, stat):
-        self.name = name
-        self.room_description = room_description
-        self.description = description
-        self.indefinite_article = indefinite_article
-        self.general_type = general_type
-        self.specific_type = specific_type
-        self.stat = stat
+class Item():
+
+    def __init__(self, data):
+        self.data = data
