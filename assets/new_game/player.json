@@ -7,6 +7,16 @@
                 "fist",
                 "t-shirt"
             ],
+            "level": 1,
+            "experience": 0,
+            "level_up": 100,
+            "max_health": 10,
+            "health": 10,
+            "dexterity": 3,
+            "equipment": {
+                "weapon": ["fist", 2],
+                "armor": ["t-shirt", 1]
+            },
             "open": "As you are walking your dog down the street, a rat darts across the road and runs into a creepy looking building. You doggo chases after it. You have no choice but to go in and rescue your beloved pupper.",
             "win": "As you enter the room your dog jumps into your arms! You did it! You head downstairs and out the front entrance, handing the baseball bat to the old man as you exit."
         }

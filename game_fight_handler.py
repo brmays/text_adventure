@@ -1,5 +1,3 @@
-from game_player import Player
-from game_view_handler import ViewHandler
 from random import random
 from time import sleep
 
@@ -11,7 +9,7 @@ class FightHandler():
         self.player = player
         self.opponent = opponent
         self.room = room
-        self.is_players_turn = player.dexterity > opponent.dexterity
+        self.is_players_turn = player.data['dexterity'] > opponent.data['dexterity']
         self.command_lines = [
             "Press (a)ttack, (d)efend, or (r)un away.",
             "Press [enter] to continue."
@@ -20,11 +18,11 @@ class FightHandler():
         self.default_delay = 2
 
     def handle_fight(self):
-        if self.player.health < 1:
+        if self.player.data['health'] < 1:
             self.kill_player()
-        elif self.opponent.health < 1:
+        elif self.opponent.data['health'] < 1:
             self.kill_opponent()
-            experience = self.player.add_experience(self.opponent.experience_value)
+            experience = self.player.add_experience(self.opponent.data['experience_value'])
             self.viewHandler.set_view_content("action response", experience)
             self.viewHandler.update_view("fight")
             input("> ")
@@ -51,18 +49,18 @@ class FightHandler():
 
     def start_fight(self):
         # add a roll here later
-        print(self.opponent.health)
+        print(self.opponent.data['health'])
         self.update_fight_pane_info([False, False])
-        if self.player.dexterity > self.opponent.dexterity:
+        if self.player.data['dexterity'] > self.opponent.data['dexterity']:
             self.update_viewHandler(
-                f"Being more nimble than {self.opponent.name}, you get the first attack. Press [ENTER] to get started.",
+                f"Being more nimble than {self.opponent.data['name']}, you get the first attack. Press [ENTER] to get started.",
                 self.command_lines[0], 0
             )
             self.is_players_turn = True
             self.handle_fight()
         else:
             self.update_viewHandler(
-                f"{self.opponent.name} got the jump on you. Defend yourself.",
+                f"{self.opponent.data['name']} got the jump on you. Defend yourself.",
                 self.command_lines[1], 0
                 )
             input(">")
@@ -70,21 +68,21 @@ class FightHandler():
 
     def attack(self, is_player):
         participants = [self.opponent, self.player]
-        names = [self.opponent.name, "you"]
+        names = [self.opponent.data['name'], "you"]
         attacker, defender, name = participants[is_player], participants[not is_player], names[not is_player]
-        modifier = (attacker.dexterity - defender.dexterity) / 10
+        modifier = (attacker.data['dexterity'] - defender.data['dexterity']) / 10
         roll = random() + modifier
         if self.defense_up == True:
             roll = roll - (roll/2)
             self.defense_up = False
         if roll > .5:
-            damage = max(attacker.equipment["weapon"][1] - defender.equipment["armor"][1], 0)
-            defender.health = defender.health - damage
+            damage = max(attacker.data['equipment']["weapon"][1] - defender.data['equipment']["armor"][1], 0)
+            defender.data['health'] = defender.data['health'] - damage
             self.update_fight_pane_info([not is_player, is_player])
             if damage > 0:
                 self.update_viewHandler(f"The attack hits {name} for {damage} hit points.", "", self.default_delay)
             else:
-                self.update_viewHandler(f"The attack lands, but the {attacker.equipment['weapon'][0]} has no effect.", "", self.default_delay)
+                self.update_viewHandler(f"The attack lands, but the {attacker.data['equipment']['weapon'][0]} has no effect.", "", self.default_delay)
             self.update_fight_pane_info([False, False])
             self.viewHandler.update_view("fight")
         else:
@@ -100,11 +98,11 @@ class FightHandler():
         self.handle_fight()
 
     def run_away(self, unused_var):
-        if self.player.dexterity * 2 > self.opponent.dexterity or self.opponent.health < (self.opponent.max_health / 2):
+        if self.player.date['dexterity'] * 2 > self.opponent.dexterity or self.opponent.health < (self.opponent.max_health / 2):
             for dir, n_room in self.room.linked_rooms.items():
                 if n_room != "locked":
                     direction, new_room = dir, n_room
-            self.player.current_room = new_room
+            self.player.data['current_room'] = new_room
             self.update_viewHandler(f"You manage to flee to the {direction}.", "", self.default_delay)
             self.viewHandler.set_view_content("action response", f"You are now in the {new_room}.")
             self.viewHandler.update_view("main")
@@ -115,20 +113,20 @@ class FightHandler():
     
     def take_enemy_action(self):
        # maybe insert some AI here at some point1
-       self.update_viewHandler(f"An attack is incoming from {self.opponent.name}'s {self.opponent.equipment['weapon'][0]}.", "", self.default_delay)
+       self.update_viewHandler(f"An attack is incoming from {self.opponent.data['name']}'s {self.opponent.data['equipment']['weapon'][0]}.", "", self.default_delay)
        self.attack(False)
 
     def kill_player(self):
-        self.update_viewHandler(f"{self.opponent.name} has bested you.", "", self.default_delay)
+        self.update_viewHandler(f"{self.opponent.data['name']} has bested you.", "", self.default_delay)
         self.viewHandler.draw_death()
 
     def kill_opponent(self):
-        if self.opponent.name in self.room.characters:
-            self.room.description = self.room.description + f" {self.opponent.name}'s body is lying on the floor."
-            self.room.characters.remove(self.opponent.name)
+        if self.opponent.data['name'] in self.room.data['characters']:
+            self.room.description = self.room.description + f" {self.opponent.data['name']}'s body is lying on the floor."
+            self.room.characters.remove(self.opponent.data['name'])
             self.update_viewHandler(
-                f"You have defeated {self.opponent.name}. As {self.opponent.pronouns['sub'].lower()} falls, all of {self.opponent.pronouns['pos']} possessions spill out onto the floor", "", self.default_delay)
-            self.room.items = self.room.items + self.opponent.items
+                f"You have defeated {self.opponent.data['name']}. As {self.opponent.data['pronouns']['sub'].lower()} falls, all of {self.opponent.data['pronouns']['pos']} possessions spill out onto the floor", "", self.default_delay)
+            self.room.items = self.room.items + self.opponent.data['items']
 
     def update_viewHandler(self, action, fight, delay):
         self.viewHandler.set_view_content("action response", action)
@@ -137,23 +135,23 @@ class FightHandler():
         sleep(delay)
 
     def update_fight_pane_info(self, bam):
-        player_health_bits = int((self.player.health / self.player.max_health) * 10)
+        player_health_bits = int((self.player.data['health'] / self.player.data['max_health']) * 10)
         player_health_bar = "[" + (player_health_bits * "#") + ((10 - player_health_bits) * " ") + "]"
-        player_health_nums = "(" + str(self.player.health) + "/" + str(self.player.max_health) + ")"
+        player_health_nums = "(" + str(self.player.data['health']) + "/" + str(self.player.data['max_health']) + ")"
         opponent_condition = self.opponent.get_condition()
 
         fight_vitals = {
             "player": {
-                "weapon": self.player.equipment["weapon"][0],
-                "armor": self.player.equipment["armor"][0],
+                "weapon": self.player.data['equipment']["weapon"][0],
+                "armor": self.player.data['equipment']["armor"][0],
                 "health_bar": player_health_bar,
                 "health_nums": player_health_nums,
                 "bam": bam[0]
             },
             "opponent": {
-                "name": self.opponent.name,
-                "weapon": self.opponent.equipment["weapon"][0],
-                "armor": self.opponent.equipment["armor"][0],
+                "name": self.opponent.data['name'],
+                "weapon": self.opponent.data['equipment']["weapon"][0],
+                "armor": self.opponent.data['equipment']["armor"][0],
                 "condition": opponent_condition,
                 "bam": bam[1]
             }

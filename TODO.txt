@@ -15,3 +15,5 @@
 15. give items alternate descriptors like characters have
 16. ressurect the rpg class to handle large chunks of text
 17. put inital player stats in JSON
+18. make more verbose help
+19. maybe some kind of tutorial?

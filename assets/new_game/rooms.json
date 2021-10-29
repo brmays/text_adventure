@@ -28,7 +28,8 @@
             "characters": [ ],
             "linked_rooms": {
                 "north": "VIP room",
-                "west": "bathroom"
+                "west": "bathroom",
+                "south": "casino"
             },
             "locks": { },
             "random_encounter": {

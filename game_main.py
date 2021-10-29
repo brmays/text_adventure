@@ -18,7 +18,7 @@ player, rooms, items, characters = data['player'], data['rooms'], data['items'],
 
 viewHandler = ViewHandler()
 viewHandler.set_view_content("action response", "Type your command below.")
-actionHandler = ActionHandler(viewHandler)
+actionHandler = ActionHandler(viewHandler, items, rooms, characters)
 player.viewHandler = viewHandler
 
 viewHandler.update_view("open")
@@ -31,18 +31,18 @@ while 1:
     viewHandler.set_view_content("room", current_room.data['description'])
     viewHandler.set_view_content("exits", current_room.generate_exit_list("and"))
 
-    room_characters = [characters[x] for x in current_room.characters]
+    room_characters = [characters.character_dict[x] for x in current_room.data['characters']]
     characters_description = ""
     for room_character in room_characters:
-        characters_description = characters_description + room_character.description
-        
-        if len(room_character.items) > 0:
-            character_items = [items[x] for x in room_character.items]
-            items_string = Item.generate_list_string(character_items, "and")
-            characters_description.join(f"{room_character.name} is holding {items_string}")
+        characters_description = characters_description + room_character.data['description']
+
+        if len(room_character.data['items']) > 0:
+            character_items = [items.item_dict[x] for x in room_character.data['items']]
+            items_string = items.generate_list_string(character_items, "and")
+            characters_description.join(f"{room_character.data['name']} is holding {items_string}")
     viewHandler.set_view_content("characters", characters_description)
-    
-    room_items_description = current_room.get_items_description()
+
+    room_items_description = current_room.get_items_description(items)
     viewHandler.set_view_content("items", room_items_description)
     viewHandler.update_view("main")
 

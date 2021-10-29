@@ -53,9 +53,9 @@ class Room():
             exit_string = exit_string + conjunction + " " + exits[-1] + "."
             return exit_string
 
-    def get_items_description(self):
-        room_items = [Items.item_dict[x] for x in self.data['items']]
+    def get_items_description(self, items):
+        room_items = [items.item_dict[x] for x in self.data['items']]
         room_items_description = ""
         for item in room_items:
-            room_items_description = room_items_description + item.room_description + " "
+            room_items_description = room_items_description + item.data['room_description']  + " "
         return room_items_description
