@@ -19,14 +19,6 @@ class Player():
         }
         self.viewHandler.player_info = new_stats
 
-    def equip(self, item):
-        if item.data['general_type'] == "equipment":
-            old_item = self.data['equipment'][item.data['specific_type']][0]
-            self.data['equipment'][item.data['specific_type']] = [item.data['name'], item.data['stat']]
-            return old_item
-        else:
-            self.viewHandler.set_view_content("action response", "You can't equip that.")
-
     def add_experience(self, experience):
         new_experience = self.data['experience'] + experience
         if new_experience >= self.data['level_up']:

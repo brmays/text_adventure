@@ -18,7 +18,7 @@ player, rooms, items, characters = data['player'], data['rooms'], data['items'],
 
 viewHandler = ViewHandler()
 viewHandler.set_view_content("action response", "Type your command below.")
-actionHandler = ActionHandler(viewHandler, items, rooms, characters)
+actionHandler = ActionHandler(viewHandler, player, items, rooms, characters)
 player.viewHandler = viewHandler
 
 viewHandler.update_view("open")
@@ -48,4 +48,4 @@ while 1:
 
     command = input("> ").lower()
 
-    actionHandler.handle_input(command, player)
+    actionHandler.handle_input(command)

@@ -4,9 +4,8 @@
             "name": "player",
             "current_room": "casino",
             "items": [
-                "fist",
-                "t-shirt"
-            ],
+                "chicken essence"
+             ],
             "level": 1,
             "experience": 0,
             "level_up": 100,

@@ -1,4 +1,6 @@
+from game_fight_handler import FightHandler
 from game_item import Items
+from random import random, randint
 
 class Rooms():
 
@@ -18,27 +20,38 @@ class Room():
     def __init__(self, data):
         self.data = data
 
-    # only supporting one locked door per room right now
-    def unlock_door(self, player_items):
-        if len(self.data['locks']) == 0:
-            return ("There are no locked doors in this room."), None
-        keys = []
-        for item in player_items:
-            item_ob = Items.item_dict[item]
-            print(item_ob)
-            if item_ob.general_type == "key":
-                keys.append(item_ob)
-        if len(keys) == 0:
-            return("You don't have any keys."), None
-        print(self.data['locks'])
-        print(self.data['locks'])
-        for lock, lock_stats in self.data['locks'].items():
-            for key in keys:
-                if lock_stats["path"] == key.data['specific_type']:
-                    self.data['linked_rooms'][lock_stats["direction"]] = lock_stats["location"]
-                    del self.locks[lock]
-                    return f"You unlock the door to the {lock_stats['direction']} but the key breaks off in the lock.", key.name
-        return "The keys you have don't fit any of the doors here.", None
+    def change_room(self, action_handler, player, input_string):
+        cardinals = ["north", "south", "east", "west"]
+        target_direction = list(filter(lambda direction: direction in cardinals, input_string.split()))
+        if len(target_direction) != 0: target_direction = target_direction[0]
+        if len(target_direction) == 0 or target_direction not in self.data['linked_rooms'].keys():
+            return f"You can't go that way. There are exits to the {self.generate_exit_list('and')}"
+        if self.data['linked_rooms'][target_direction] == "locked":
+            return "There is a locked door blocking your way."
+        if len(self.data['characters']) == 0 and len(self.data['random_encounter']["baddie_pool"]) > 0:
+            encounter_roll = random()
+            if encounter_roll + ((self.data['random_encounter']["chance"]) / 10) > 1:
+                baddie_roll = randint(0, len(self.data['random_encounter']["baddie_pool"]) - 1)
+                baddie = action_handler.characters.character_dict[self.data['random_encounter']["baddie_pool"][baddie_roll]]
+                random_encounter = action_handler.fightHandler(action_handler.viewHandler, player, baddie, self)
+                random_encounter.handle_random_encounter()
+        player.data['current_room'] = self.data['linked_rooms'][target_direction]
+        if player.data['current_room'] == "doggy's room":
+            self.viewHandler.set_view_content("info_text".data['win'])
+            self.viewHandler.win_game()
+        else:
+            return "You moved {target_direction}."
+
+    def unlock_door(self, _, player, __):
+        locks = self.data['locks']
+        if len(locks) == 0:
+            return "There are no locked doors in this room."
+        for lock in locks:
+            if lock['unlocked_with'] in player.data['items']:
+                player.data['items'].remove(lock['unlocked_with'])
+                self.data.linked_rooms[lock['direction']] = lock['location']
+                return f"You unlock the door to the {lock['direction']} but you accidentally snap the key off."
+        return "The keys you have don't fit any of the doors here."
 
     def generate_exit_list(self, conjunction):
         exits = [*self.data['linked_rooms']]

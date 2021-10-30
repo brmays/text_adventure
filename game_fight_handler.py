@@ -1,4 +1,4 @@
-from random import random
+from random import random, randint
 from time import sleep
 
 class FightHandler():
@@ -65,6 +65,30 @@ class FightHandler():
                 )
             input(">")
             self.take_enemy_action()
+
+    def handle_random_encounter(self): 
+        self.viewHandler.set_view_content("action response", f"As you exit the room, a {self.opponent.data['name']} suddenly blocks your path. Press [enter] to continue.")
+        self.viewHandler.update_view("main")
+        input("> ")
+        self.opponent.data['health'] = self.opponent.data['max_health']
+        self.start_fight()
+        if len(self.room.data['random_encounter']["treasure_pool"]) > 0 and self.opponent.data['health'] <= 0:
+            treasure_roll = randint(0, len(self.room.data['random_encounter']["treasure_pool"]) - 1)
+            treasure = self.room.data['random_encounter']["treasure_pool"][treasure_roll]
+            self.viewHandler.set_view_content("action response", f"You have slain your enemy. It was carrying a {treasure}. You can take it, or sacrifice it to the gods of battle. Do you want it? (Y)es or (n)?")
+            self.viewHandler.update_view("main")
+            answer = input("> ")
+            if len(answer) > 0 and answer[0].lower() == "y":
+                self.viewHandler.set_view_content("action response", f"You take the {treasure}. Press [enter] to continue.")
+                self.player.data['items'].append(treasure)
+            else:
+                self.viewHandler.set_view_content("action response", f"The {treasure} disappears. Press [enter] to continue.")
+            self.viewHandler.update_view("main")
+            input("> ")
+            self.viewHandler.update_view("main")
+        else:
+            self.viewHandler.set_view_content("action response", "You have slain your enemy and gained valuable experience.")
+        print("break")
 
     def attack(self, is_player):
         participants = [self.opponent, self.player]

@@ -1,11 +1,11 @@
 1. Try to make the two handlers update the view in a similar way <- inheritance
-2. make classes import each other less
+[DONE] <--but at what cost (random encounter....)? 2. make classes import each other less
 3. for items, if rooms, characters, and player could hold Item objects instead of strings, that would be nice <- top priority?
-4. convert things in classes that hold json info to a big dict
+[DONE] 4. convert things in classes that hold json info to a big dict
 5. make save system
 6. crit system or something. something to make armor not always effective at blocking damage completely
 7. clean up the action handler. take input, parse it, then let the other class handle what happens
-8. allow multiples of items
+8. allow multiples of items <-- already allowed, but need to make them stack
 9. better fight graphics, who's attack is missing
 10. format view character page to accomnodate longer item names
 11. make some items untakable i.e. they belong to a room (water fountain)
@@ -17,3 +17,4 @@
 17. put inital player stats in JSON
 18. make more verbose help
 19. maybe some kind of tutorial?
+20. Perhaps make random encounter a child of fighthandler class or vice versa

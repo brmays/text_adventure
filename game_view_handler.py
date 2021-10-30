@@ -215,8 +215,6 @@ class ViewHandler():
             print("|" + (72 * " ") + "|")
         print(74 * "*")
 
-        input(">")
-
     def draw_info(self):
         print(self.width * "*")
         print("|" + ((self.width -2) * " ") + "|")
